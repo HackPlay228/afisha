@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформление заказа - Where?</title>
+  <style>
+    /* Общие стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #page-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    #content-wrap {
+      flex: 1;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Шапка */
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    /* Корзина */
+    .cart-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      margin: 100px auto 20px; /* Отступ для фиксации шапки */
+    }
+
+    .cart-container h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item h3 {
+      font-size: 1.2rem;
+    }
+
+    .cart-item p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .cart-item .price {
+      font-weight: bold;
+      color: #222;
+    }
+
+    /* Секция промокода */
+    .promo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .promo input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .promo button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .promo button:hover {
+      background-color: #555;
+    }
+
+    /* Итог */
+    .summary {
+      margin: 20px 0;
+    }
+
+    .summary p {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .summary p.total {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Кнопка оплаты */
+    .checkout {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .checkout button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+    .checkout button:hover {
+      background-color: #555;
+    }
+
+    /* Футер */
+    footer {
+      background: linear-gradient(135deg, #333, #555);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Навигация с иконками */
+    .footer-nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Текст в футере */
+    .footer-text {
+      font-size: 0.9rem;
+      text-align: center;
+      color: #ddd;
+    }
+
+    .footer-text a {
+      color: #fff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+
+    .footer-text a:hover {
+      color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div id="page-container">
+    <header>
+      Where?
+    </header>
+
+    <div id="content-wrap">
+      <div class="cart-container">
+        <h1>Корзина</h1>
+
+        <!-- Товары в корзине -->
+        <div class="cart-item">
+          <div>
+            <h3>Концерт DK</h3>
+            <p>2500₽</p>
+          </div>
+          <div>
+            <p class="price">5000₽</p>
+            <p>2 шт.</p>
+          </div>
+        </div>
+
+        <!-- Промокод -->
+        <div class="promo">
+          <input type="text" placeholder="Введите промокод">
+          <button>Применить</button>
+        </div>
+
+        <!-- Итоговая сумма -->
+        <div class="summary">
+          <p>Сумма: <span>5000₽</span></p>
+          <p>Сервисный сбор: <span>250₽</span></p>
+          <p class="total">ИТОГО: <span>5250₽</span></p>
+        </div>
+
+        <!-- Кнопка оплаты -->
+        <div class="checkout">
+          <button>Перейти к оплате</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <!-- Навигация с иконками -->
+      <div class="footer-nav">
+        <a href="1818.html" class="nav-link">Главная</a>
+        <a href="#" class="nav-link">События</a>
+        <a href="#" class="nav-link">Контакты</a>
+        <a href="#" class="nav-link">Помощь</a>
+        <a href="#" class="nav-link">О нас</a>
+      </div>
+
+      <!-- Текстовый блок -->
+      <p class="footer-text">© 2024 ООО "Где" Казань | Политика конфиденциальности</p>
+    </footer>
+  </div>
+</body>
+</html>
